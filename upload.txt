@@ -1,0 +1,21 @@
+paimon:
+CREATE TABLE paimon.defualt.t1(
+  
+)
+PARTITIONED BY (create_date)
+TBLPROPERTIES (
+  'bucket' = '4',
+  'bucket-key' = 'lot_no',
+  'sink.parallelism' = '4',
+  'write-mode' = 'append-only',
+  'file.format' = 'parquet',
+  'file.compression' = 'zstd'
+)
+hive:
+CREATE TABLE spark_catalog.defualt.t1(
+  
+) PARTITIONED BY (create_date STRING)
+STORED AS PARQUET
+
+
+insert into xxx.t1 SELECT xx FROM s1 WHERE create_date='2023-07-20' and lot_no='xxx'
